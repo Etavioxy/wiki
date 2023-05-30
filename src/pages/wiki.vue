@@ -68,6 +68,7 @@ async function renew(id) {
   htmlUpdated = true;
     console.log('html updated');
   html.value = md.render(text, env);
+  console.log(env.headings);
   console.log('insert html');
 }
 renew(router.params.id);
