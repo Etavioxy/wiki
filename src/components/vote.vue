@@ -21,14 +21,18 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed } from "vue";
+<script setup lang="ts">
+import { ref, computed, toRefs } from "vue";
 import axios from "axios";
 
-// props
-const props = defineProps({
-  title: String,
-});
+// 定义props类型
+interface Props {
+  title: string
+}
+
+const props = defineProps<Props>()
+
+const { title } = toRefs(props);
 
 // data
 const selected = ref(null);
@@ -50,8 +54,8 @@ const vote = async () => {
   // send request to submit vote
 //  await axios.post("/api/vote", { option: selected.value });
 //  // get vote result
-//  const res = await axios.get("/api/result");
-  const res = {data:{ a: 1145, b: 1419, c: 810}};
+  const res = await axios.get("/api/result");
+  //const res = {data:{ a: 1145, b: 1419, c: 810}};
   // update options with result
   options.value.forEach((option) => {
     option.count = res.data[option.value] || 0;

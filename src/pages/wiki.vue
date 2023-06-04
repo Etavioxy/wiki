@@ -4,9 +4,6 @@
       <a href="https://vitejs.dev" target="_blank">
         <img src="/vite.svg" class="logo" alt="Vite logo" />
       </a>
-      <a href="https://vuejs.org/" target="_blank">
-        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-      </a>
     </div>
     <div class="container">
       <div id="markdown" v-html="html"></div>
@@ -21,26 +18,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
 </template>
 
-<script setup>
-import md from '../scripts/md.ts';
+<script setup lang="ts">
+//import md from '../scripts/md.ts';
 import { useRoute } from 'vue-router';
 import { ref, reactive, watch, computed, onUpdated } from 'vue';
 import HeadingsTree from '../components/headings-tree.vue';
-import ListMenu from '../components/list-menu.vue';
-import Vote from '../components/vote.vue';
+//import ListMenu from '../components/list-menu.vue';
+//import Vote from '../components/vote.vue';
 
 let router = useRoute(); // 获取id参数
 
-let lists = [
-  {
-    title: "table1",
-    items: [["123",3], ["000",4], ["333"]]
-  },
-  {
-    title: "table2",
-    items: [["123"], ["345",3]]
-  },
-];
+//let lists = [
+//  {
+//    title: "table1",
+//    items: [["123",3], ["000",4], ["333"]]
+//  },
+//  {
+//    title: "table2",
+//    items: [["123"], ["345",3]]
+//  },
+//];
 
 //let tree = reactive([
 //  {
@@ -58,46 +55,67 @@ let lists = [
 //  }
 //);
 
-let env = {};
+//let env = {};
 let html = ref('');
 let htmlUpdated = false;
 
-async function renew(id) {
+async function renew(id: string) {
   console.log('renew', id);
   let text = await fetch(`/${id}.md`).then(res => res.text());
   htmlUpdated = true;
     console.log('html updated');
-  html.value = md.render(text, env);
-  console.log(env.headings);
+  html.value = text; //md.render(text, env);
   console.log('insert html');
 }
-renew(router.params.id);
 
+
+let id = ref(router.params.id);
+if (typeof id.value !== 'string') {
+  id.value = id.value.join('/');
+}
+renew(id.value);
 watch(
-  () => router.params.id,
-  renew
+  // 使用id.value来访问响应式对象的值
+  () => id.value,
+  (newValue: unknown) => {
+    renew(newValue as string)
+  }
 );
+//TODO lazy route
 
-let headings = [{offsetTop:0}, {offsetTop:Infinity}];
+interface OffsetObject {
+  offsetTop: number;
+  innerText: string;
+}
+let headings: (OffsetObject|HTMLElement)[] = [
+  {offsetTop:0, innerText:'(Top)'},
+  {offsetTop:Infinity, innerText:'(Buttom)'}
+];
 let nowAnchor = ref(0);
 
 class HeadingNode {
-  constructor(level, text) {
+  // 声明属性的类型
+  level: number;
+  name: string;
+  children: HeadingNode[];
+  parent?: HeadingNode;
+  constructor(level: number, text: string) {
     this.level = level;
     this.name = text;
     this.children = [];
   }
 }
-function buildHeadingTree(headingsList) {
+function buildHeadingTree(headingsList: HTMLElement[]) {
   const root = new HeadingNode(0, "Root");
   let currentParent = root;
   headingsList.forEach((heading) => {
-    const level = parseInt(heading.tagName.slice(1)); // 从'h1'、'h2'等标签名中提取等级数字
-    const text = heading.textContent;
+    // 从'h1'、'h2'等标签名中提取等级数字
+    const level = parseInt(heading.tagName.slice(1));
+    const text = heading.textContent || '(empty)';
     const newNode = new HeadingNode(level, text);
     // 向上查找正确的父节点
     while (level <= currentParent.level) {
-      currentParent = currentParent.parent;
+      currentParent = currentParent.parent!;
     }
     newNode.parent = currentParent;
     currentParent.children.push(newNode);
@@ -113,7 +131,7 @@ onUpdated(() => {
   if( htmlUpdated ){
     console.log('htmlUpdated');
     htmlUpdated = false;
-    let headingDOM = Array.from(document.querySelectorAll('#markdown > h1, h2, h3, h4, h5, h6'));
+    let headingDOM = [...document.querySelectorAll('#markdown > h1, h2, h3, h4, h5, h6')] as HTMLElement[];
     Object.assign(headingTree, buildHeadingTree(headingDOM).children);
 
     headings.splice(1, headings.length-2, ...headingDOM);

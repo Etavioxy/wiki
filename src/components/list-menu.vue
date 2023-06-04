@@ -2,7 +2,7 @@
   <div class="mw-collapsible">
     <span class="mw-collapsible-toggle" @click="toggle">{{title}}</span>
     <ul class="mw-collapsible-content" v-if="open">
-      <li v-for="item in items" :key="item">
+      <li v-for="item in items" :key="item[0]">
         <span :style="{lineHeight: (item[1]===undefined?1:item[1])*16 + 'px'}">○</span>
         <a :href="'/wiki/'+item[0]">{{item[0]}}</a>
       </li>
@@ -10,7 +10,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { PropType } from 'vue';
   // 导出 vue 组件
   export default {
     // 定义组件的属性，包括 title 和 items
@@ -20,7 +21,7 @@
         required: true
       },
       items: {
-        type: Array,
+        type: Array as PropType<Array<[string, number?]>>,
         required: true
       }
     },

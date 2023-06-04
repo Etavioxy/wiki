@@ -26,7 +26,7 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 // 定义一个递归的组件，用于渲染树形结构
 export default {
   // 接收一个节点对象作为prop

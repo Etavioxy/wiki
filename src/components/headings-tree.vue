@@ -17,7 +17,7 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
 import TreeNode from './headings-tree-node.vue';
 export default {
   // 接收一个树形数据作为prop
