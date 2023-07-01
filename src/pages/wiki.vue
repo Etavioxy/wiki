@@ -61,7 +61,7 @@ let htmlUpdated = false;
 
 async function renew(id: string) {
   console.log('renew', id);
-  let text = await fetch(`/${id}.md`).then(res => res.text());
+  let text = await fetch(`/${id}.md.html`).then(res => res.text());
   htmlUpdated = true;
     console.log('html updated');
   html.value = text; //md.render(text, env);

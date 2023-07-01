@@ -1,7 +1,19 @@
-# wiki frontend
+# Wiki frontend
 
-vite vue3 markdown-it
-
-wiki.md: AI wroten references.
+vite vue3-ts markdown-it
 
 follow-ai.sh: trace to recent steps from wiki.md.
+
+## Road Map
+
+v0.0.1 Basic Frontend
+
+v0.1.0 Add vite-plugin-ssr
+
+v0.2.0 markdown-it & gitlab-runner
+
+v0.3.0 Fiber backend with vite-plugin-ssr middleware
+
+v0.4.0 Add more components, UI presets
+
+v1.0.0 Stable version

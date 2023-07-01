@@ -11,15 +11,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@iktakahiro/markdown-it-katex": "^4.0.1",
     "axios": "^1.4.0",
-    "markdown-it": "^13.0.1",
-    "markdown-it-anchor": "^8.6.7",
-    "markdown-it-attrs": "^4.1.6",
-    "markdown-it-highlightjs": "^4.0.1",
-    "markdown-it-multimd-table": "^4.2.2",
-    "markdown-it-task-lists": "^2.1.1",
-    "markdown-it-wikilinks": "^1.2.0",
     "pinia": "^2.0.36",
     "sass": "^1.62.1",
     "vue": "^3.2.47",
