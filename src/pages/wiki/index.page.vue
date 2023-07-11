@@ -20,13 +20,12 @@
 
 <script setup lang="ts">
 //import md from '../scripts/md.ts';
-import { useRoute } from 'vue-router';
 import { ref, reactive, watch, computed, onUpdated } from 'vue';
-import HeadingsTree from '../components/headings-tree.vue';
+import HeadingsTree from '../../components/headings-tree.vue';
 //import ListMenu from '../components/list-menu.vue';
 //import Vote from '../components/vote.vue';
 
-let router = useRoute(); // 获取id参数
+let router = { id: '1' }; // 获取id参数
 
 //let lists = [
 //  {
@@ -69,7 +68,7 @@ async function renew(id: string) {
 }
 
 
-let id = ref(router.params.id);
+let id = ref(router.id);
 if (typeof id.value !== 'string') {
   id.value = id.value.join('/');
 }

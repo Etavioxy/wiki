@@ -3,7 +3,7 @@
 
 <template>
   <div style="height: 5em"></div>
-  <router-view></router-view>
+  <slot></slot>
 </template>
 
 <style scoped>
