@@ -1,7 +1,10 @@
 import { createSSRApp, defineComponent, h } from 'vue'
-import GlobalPageShell from './GlobalPageShell.vue'
-import { setPageContext } from './usePageContext'
+import GlobalPageShell from './components/GlobalPageShell.vue'
+import { setPageContext } from './utils/usePageContext'
 import './style.scss'
+
+// 全局注册组件
+import TreeNode from './components/headings-tree-node.vue'
 
 export { createApp }
 
@@ -18,9 +21,7 @@ function createApp(Page: Component, pageProps: PageProps | undefined, pageContex
 
   const app = createSSRApp(PageWithLayout)
 
-  //// 全局注册组件
-  //import TreeNode from './components/headings-tree-node.vue'
-  //app.component('TreeNode', TreeNode);
+  app.component('TreeNode', TreeNode);
 
   // Make pageContext available from any Vue component
   setPageContext(app, pageContext)

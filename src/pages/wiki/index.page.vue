@@ -20,12 +20,14 @@
 
 <script setup lang="ts">
 //import md from '../scripts/md.ts';
-import { ref, reactive, watch, computed, onUpdated } from 'vue';
+import { ref, reactive, watch, computed, onMounted, onUpdated } from 'vue';
 import HeadingsTree from '../../components/headings-tree.vue';
 //import ListMenu from '../components/list-menu.vue';
 //import Vote from '../components/vote.vue';
 
-let router = { id: '1' }; // 获取id参数
+defineProps(['id', 'html']);
+
+let router = { id: '1' }
 
 //let lists = [
 //  {
@@ -55,7 +57,6 @@ let router = { id: '1' }; // 获取id参数
 //);
 
 //let env = {};
-let html = ref('');
 let htmlUpdated = false;
 
 async function renew(id: string) {
@@ -67,12 +68,14 @@ async function renew(id: string) {
   console.log('insert html');
 }
 
-
 let id = ref(router.id);
 if (typeof id.value !== 'string') {
   id.value = id.value.join('/');
 }
-renew(id.value);
+
+onMounted(async()=>{
+})
+
 watch(
   // 使用id.value来访问响应式对象的值
   () => id.value,
@@ -125,8 +128,8 @@ function buildHeadingTree(headingsList: HTMLElement[]) {
 
 let headingTree = reactive({});
 
-onUpdated(() => {
-  // console.log('Updated');
+onMounted(() => {
+  console.log('onMounted')
   if( htmlUpdated ){
     console.log('htmlUpdated');
     htmlUpdated = false;
@@ -135,43 +138,20 @@ onUpdated(() => {
 
     headings.splice(1, headings.length-2, ...headingDOM);
   }
-});
-
-// 监听页面滚动事件和元素点击事件，比如使用 `window.addEventListener('scroll', callback)`、`element.addEventListener('click', callback)` 等方法。
-// 获取页面滚动位置和元素的位置信息，比如使用 `window.scrollY`、`element.offsetTop` 等属性或方法。
-window.addEventListener('scroll', () => {
-  while( headings[nowAnchor.value].offsetTop > window.scrollY ){
-    nowAnchor.value--;
-  }
-  while( headings[nowAnchor.value+1].offsetTop <= window.scrollY ){
-    nowAnchor.value++;
-  }
-});
+  window.addEventListener('scroll', () => {
+    while( headings[nowAnchor.value].offsetTop > window.scrollY ){
+      nowAnchor.value--;
+    }
+    while( headings[nowAnchor.value+1].offsetTop <= window.scrollY ){
+      nowAnchor.value++;
+    }
+  });
+})
 
 let focus = computed(() => headings[nowAnchor.value].innerText);
 
-// my-plugin.js
-
 // 如何操作元素的样式和类名，比如使用 `element.style`、`element.classList` 等属性或方法。
 // 如何实现平滑滚动和锚点跳转，比如使用 `window.scrollTo(options)`、`element.scrollIntoView(options)` 等方法。
-
-//import { onBeforeMount, onMounted, onBeforeUpdate, onBeforeUnmount, onUnmounted } from 'vue'
-//
-//onBeforeMount(() => {
-//  console.log('onBeforeMount')
-//})
-//onMounted(() => {
-//  console.log('onMounted')
-//})
-//onBeforeUpdate(() => {
-//  console.log('onBeforeUpdate')
-//})
-//onBeforeUnmount(() => {
-//  console.log('onBeforeUnmount')
-//})
-//onUnmounted(() => {
-//  console.log('onUnmounted')
-//})
 
 </script>
 

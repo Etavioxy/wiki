@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import ssr from 'vite-plugin-ssr/plugin'
-import md from 'vite-plugin-md'
+import md from 'vite-plugin-vue-markdown'
 
 import anchor from 'markdown-it-anchor'
 import multimdTable from 'markdown-it-multimd-table'
@@ -27,7 +27,6 @@ export default defineConfig({
         typographer: true,
       },
       markdownItSetup(md) {
-        md.use(bounce_plugin);
         md.use(anchor, {
           level: [1,2],
           permalink: anchor.permalink.headerLink(),
