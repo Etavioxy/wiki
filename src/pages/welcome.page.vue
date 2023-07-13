@@ -30,7 +30,7 @@ const count = ref(0)
   </p>
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
   <p>
-    <a href="/wiki/1">1.md</a>
+    <a href="/wiki/index">index.md</a>
     <br>
     <a href="/wiki/a">a.md</a>
     <br>

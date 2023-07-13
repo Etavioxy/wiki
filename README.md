@@ -2,8 +2,6 @@
 
 vite vue3-ts markdown-it
 
-follow-ai.sh: trace to recent steps from wiki.md.
-
 ## Road Map
 
 v0.0.1 Basic Frontend
