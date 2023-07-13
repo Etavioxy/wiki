@@ -1,15 +1,12 @@
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types'
-import { render, fetchFromUrl } from '../../utils/renderMarkdown'
+import { render } from '@/utils/renderMarkdown'
 
 export { onBeforeRender }
 export { prerender }
 
 async function onBeforeRender(pageContext: PageContextBuiltIn) {
   const { id } = pageContext.routeParams
-  console.log('url: ' + id + '.md');
   const html = await render(id, pageContext)
-  console.log('url: ' + id + '.md');
-  console.log(html)
   return {
     pageContext: {
       pageProps: {
@@ -19,7 +16,13 @@ async function onBeforeRender(pageContext: PageContextBuiltIn) {
     }
   }
 }
+//TODO html在SSG之后没有被销毁
 
-//function prerender(): string[] {
-//  return ['/hello', ...names.map((name) => `/hello/${name}`)]
-//}
+import path from 'path'
+import needUpdate from '@/../assets/needUpdate.txt?raw'
+
+function prerender(): string[] {
+  const filenames = needUpdate.split('\n').filter((name) => name.startsWith('assets/') && name.endsWith('.md') );
+  console.log(filenames);
+  return filenames.map((name) => `/wiki/${path.basename(name, path.extname(name))}`);
+}

@@ -2,6 +2,7 @@ export { render }
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ['pageProps', 'urlPathname']
 
+import type { PageContextServer } from './types'
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
@@ -17,14 +18,18 @@ async function render(pageContext: PageContextServer) {
 
   // See https://vite-plugin-ssr.com/head
   const { documentProps } = pageContext.exports
+  const logoUrl = '/blob.svg'
+  const title = (documentProps && documentProps.title) || 'My Club Wiki'
+  const desc = (documentProps && documentProps.description) || 'App using Vite + vite-plugin-ssr'
 
   const documentHtml = escapeInject`<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/blob.svg" />
+    <link rel="icon" type="image/svg+xml" href="${logoUrl}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Club Wiki</title>
+    <meta name="description" content="${desc}" />
+    <title>${title}</title>
   </head>
   <body>
     <div id="app">${dangerouslySkipEscape(appHtml)}</div>

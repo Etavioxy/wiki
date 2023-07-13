@@ -19,71 +19,46 @@
 </template>
 
 <script setup lang="ts">
-//import md from '../scripts/md.ts';
-import { ref, reactive, watch, computed, onMounted, onUpdated } from 'vue';
-import HeadingsTree from '../../components/headings-tree.vue';
+import { ref, reactive, computed, onMounted } from 'vue';
+import HeadingsTree from '@/components/headings-tree.vue';
 //import ListMenu from '../components/list-menu.vue';
 //import Vote from '../components/vote.vue';
 
 defineProps(['id', 'html']);
 
-let router = { id: '1' }
+import { usePageContext } from '@/utils/usePageContext'
 
-//let lists = [
-//  {
-//    title: "table1",
-//    items: [["123",3], ["000",4], ["333"]]
-//  },
-//  {
-//    title: "table2",
-//    items: [["123"], ["345",3]]
-//  },
-//];
+interface WikiProps {
+  id: string;
+  html: string;
+}
 
-//let tree = reactive([
-//  {
-//    name: 'a',
-//    children:[{ name: 'aa' }]
-//  },
-//  { name: 'b' },
-//  { name: 'c' }
-//]);
-
-//let tree = reactive(
-//  {
-//    name: 'a',
-//    children:[{ name: 'aa' }]
-//  }
-//);
+const pageProps = usePageContext().pageProps! as WikiProps
 
 //let env = {};
-let htmlUpdated = false;
+let htmlUpdated = true;
 
-async function renew(id: string) {
-  console.log('renew', id);
-  let text = await fetch(`/${id}.md.html`).then(res => res.text());
-  htmlUpdated = true;
-    console.log('html updated');
-  html.value = text; //md.render(text, env);
-  console.log('insert html');
-}
-
-let id = ref(router.id);
-if (typeof id.value !== 'string') {
-  id.value = id.value.join('/');
-}
+let id = ref(pageProps.id);
 
 onMounted(async()=>{
 })
 
-watch(
-  // 使用id.value来访问响应式对象的值
-  () => id.value,
-  (newValue: unknown) => {
-    renew(newValue as string)
-  }
-);
-//TODO lazy route
+///async function renew(id: string) {
+///  console.log('renew', id);
+///  let text = await fetch(`/${id}.md.html`).then(res => res.text());
+///  htmlUpdated = true;
+///  html.value = text; //md.render(text, env);
+///  console.log('insert html');
+///}
+
+///watch(
+///  // 使用id.value来访问响应式对象的值
+///  () => id.value,
+///  (newValue: unknown) => {
+///    renew(newValue as string)
+///  }
+///);
+/////TODO lazy route
 
 interface OffsetObject {
   offsetTop: number;

@@ -4,5 +4,5 @@
 # Loop from $1 to $2
 for i in $(seq $1 $2)
 do
-  node randstr.js > tmp/$i.md
+  node randstr.js > ../assets/$i.md
 done

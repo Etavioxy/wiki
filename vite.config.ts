@@ -10,6 +10,8 @@ import katex from '@iktakahiro/markdown-it-katex'
 import attrs from 'markdown-it-attrs'
 import taskLists from 'markdown-it-task-lists'
 
+import { resolve } from 'path'
+
 //import wikiLinks from './wikilinks.ts';
 //.use(wikiLinks({ baseURL: '/wiki/' }))
 
@@ -44,4 +46,9 @@ export default defineConfig({
       },
     })
   ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src')
+    }
+  }
 })

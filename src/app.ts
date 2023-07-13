@@ -1,3 +1,4 @@
+import type { Component, PageProps, PageContext } from './types'
 import { createSSRApp, defineComponent, h } from 'vue'
 import GlobalPageShell from './components/GlobalPageShell.vue'
 import { setPageContext } from './utils/usePageContext'
