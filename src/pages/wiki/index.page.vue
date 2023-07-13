@@ -19,69 +19,46 @@
 </template>
 
 <script setup lang="ts">
-//import md from '../scripts/md.ts';
-import { useRoute } from 'vue-router';
-import { ref, reactive, watch, computed, onUpdated } from 'vue';
-import HeadingsTree from '../components/headings-tree.vue';
+import { ref, reactive, computed, onMounted } from 'vue';
+import HeadingsTree from '@/components/headings-tree.vue';
 //import ListMenu from '../components/list-menu.vue';
 //import Vote from '../components/vote.vue';
 
-let router = useRoute(); // 获取id参数
+defineProps(['id', 'html']);
 
-//let lists = [
-//  {
-//    title: "table1",
-//    items: [["123",3], ["000",4], ["333"]]
-//  },
-//  {
-//    title: "table2",
-//    items: [["123"], ["345",3]]
-//  },
-//];
+import { usePageContext } from '@/utils/usePageContext'
 
-//let tree = reactive([
-//  {
-//    name: 'a',
-//    children:[{ name: 'aa' }]
-//  },
-//  { name: 'b' },
-//  { name: 'c' }
-//]);
+interface WikiProps {
+  id: string;
+  html: string;
+}
 
-//let tree = reactive(
-//  {
-//    name: 'a',
-//    children:[{ name: 'aa' }]
-//  }
-//);
+const pageProps = usePageContext().pageProps! as WikiProps
 
 //let env = {};
-let html = ref('');
-let htmlUpdated = false;
+let htmlUpdated = true;
 
-async function renew(id: string) {
-  console.log('renew', id);
-  let text = await fetch(`/${id}.md.html`).then(res => res.text());
-  htmlUpdated = true;
-    console.log('html updated');
-  html.value = text; //md.render(text, env);
-  console.log('insert html');
-}
+let id = ref(pageProps.id);
 
+onMounted(async()=>{
+})
 
-let id = ref(router.params.id);
-if (typeof id.value !== 'string') {
-  id.value = id.value.join('/');
-}
-renew(id.value);
-watch(
-  // 使用id.value来访问响应式对象的值
-  () => id.value,
-  (newValue: unknown) => {
-    renew(newValue as string)
-  }
-);
-//TODO lazy route
+///async function renew(id: string) {
+///  console.log('renew', id);
+///  let text = await fetch(`/${id}.md.html`).then(res => res.text());
+///  htmlUpdated = true;
+///  html.value = text; //md.render(text, env);
+///  console.log('insert html');
+///}
+
+///watch(
+///  // 使用id.value来访问响应式对象的值
+///  () => id.value,
+///  (newValue: unknown) => {
+///    renew(newValue as string)
+///  }
+///);
+/////TODO lazy route
 
 interface OffsetObject {
   offsetTop: number;
@@ -126,8 +103,8 @@ function buildHeadingTree(headingsList: HTMLElement[]) {
 
 let headingTree = reactive({});
 
-onUpdated(() => {
-  // console.log('Updated');
+onMounted(() => {
+  console.log('onMounted')
   if( htmlUpdated ){
     console.log('htmlUpdated');
     htmlUpdated = false;
@@ -136,43 +113,20 @@ onUpdated(() => {
 
     headings.splice(1, headings.length-2, ...headingDOM);
   }
-});
-
-// 监听页面滚动事件和元素点击事件，比如使用 `window.addEventListener('scroll', callback)`、`element.addEventListener('click', callback)` 等方法。
-// 获取页面滚动位置和元素的位置信息，比如使用 `window.scrollY`、`element.offsetTop` 等属性或方法。
-window.addEventListener('scroll', () => {
-  while( headings[nowAnchor.value].offsetTop > window.scrollY ){
-    nowAnchor.value--;
-  }
-  while( headings[nowAnchor.value+1].offsetTop <= window.scrollY ){
-    nowAnchor.value++;
-  }
-});
+  window.addEventListener('scroll', () => {
+    while( headings[nowAnchor.value].offsetTop > window.scrollY ){
+      nowAnchor.value--;
+    }
+    while( headings[nowAnchor.value+1].offsetTop <= window.scrollY ){
+      nowAnchor.value++;
+    }
+  });
+})
 
 let focus = computed(() => headings[nowAnchor.value].innerText);
 
-// my-plugin.js
-
 // 如何操作元素的样式和类名，比如使用 `element.style`、`element.classList` 等属性或方法。
 // 如何实现平滑滚动和锚点跳转，比如使用 `window.scrollTo(options)`、`element.scrollIntoView(options)` 等方法。
-
-//import { onBeforeMount, onMounted, onBeforeUpdate, onBeforeUnmount, onUnmounted } from 'vue'
-//
-//onBeforeMount(() => {
-//  console.log('onBeforeMount')
-//})
-//onMounted(() => {
-//  console.log('onMounted')
-//})
-//onBeforeUpdate(() => {
-//  console.log('onBeforeUpdate')
-//})
-//onBeforeUnmount(() => {
-//  console.log('onBeforeUnmount')
-//})
-//onUnmounted(() => {
-//  console.log('onUnmounted')
-//})
 
 </script>
 
