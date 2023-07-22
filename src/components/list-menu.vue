@@ -10,32 +10,26 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref, reactive, computed, onMounted } from 'vue';
 import { PropType } from 'vue';
-  // 导出 vue 组件
-  export default {
-    // 定义组件的属性，包括 title 和 items
-    props: {
-      title: {
-        type: String,
-        required: true
-      },
-      items: {
-        type: Array as PropType<Array<[string, number?]>>,
-        required: true
-      }
-    },
-    data() {
-      return {
-        open: false
-      }
-    },
-    methods: {
-      toggle(){
-        this.open = !this.open;
-      }
-    },
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true
+  },
+  items: {
+    type: Array as PropType<Array<[string, number?]>>,
+    required: true
   }
+});
+
+let open = ref(false);
+
+function toggle(){
+  open.value = !open.value;
+}
 </script>
 
 <style scoped>
