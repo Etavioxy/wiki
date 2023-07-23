@@ -14,7 +14,9 @@ function createApp(Page: Component, pageProps: PageProps | undefined, pageContex
     render() {
       return h(GlobalPageShell, {}, {
         default() {
-          return h(Page, pageProps || {})
+          return h(Page, pageProps || {}, {
+            default(){ return pageContext.markdownHTML || '' }
+          })
         }
       })
     }

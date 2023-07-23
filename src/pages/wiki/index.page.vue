@@ -6,10 +6,12 @@
       </a>
     </div>
     <div class="container">
-      <div id="markdown" v-html="html"></div>
+      <div id="markdown">
+        <slot></slot>
+      </div>
       <div class="info"></div>
     </div>
-    <!-- <ListMenu v-for="list in lists" :title="list.title" :items="list.items"></ListMenu> -->
+    <ListMenu v-for="list in lists" :title="list.title" :items="list.items"></ListMenu>
     <div class="info" :class="nowAnchor!=0 ? 'info-fixed':'info-absolute'">
       <p>heading = {{focus}}</p>
       <HeadingsTree ref="headingTree" :headingDOM="headingDOM"></HeadingsTree>
@@ -21,17 +23,22 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue';
 import HeadingsTree from '@/components/headings-tree.vue';
-//import ListMenu from '@/components/list-menu.vue';
+import ListMenu from '@/components/list-menu.vue';
 //import Vote from '@/components/vote.vue';
 const headingTree = ref()
 
-const props = defineProps(['id', 'html']);
-
-import { usePageContext } from '@/utils/usePageContext'
+const props = defineProps(['id']);
 
 let htmlUpdated = true;
 
 let id = ref(props.id);
+
+interface List{
+  title: any;
+  items: any;
+};
+
+let lists: List[] = reactive([]);
 
 ///async function renew(id: string) {
 ///  console.log('renew', id);
@@ -81,6 +88,12 @@ onMounted(() => {
       nowAnchor.value++;
     }
   });
+  (async () => {
+    let data = await fetch('http://localhost:3000/example-list.json');
+    let json = await data.json();
+    Object.assign(lists, json)
+  })();
+
 })
 
 // 如何操作元素的样式和类名，比如使用 `element.style`、`element.classList` 等属性或方法。

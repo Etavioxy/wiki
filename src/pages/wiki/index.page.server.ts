@@ -1,22 +1,21 @@
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types'
-import { render } from '@/utils/renderMarkdown'
+import { importMd } from '@/utils/renderMarkdown'
 
 export { onBeforeRender }
 export { prerender }
 
 async function onBeforeRender(pageContext: PageContextBuiltIn) {
   const { id } = pageContext.routeParams
-  const html = await render(id, pageContext)
+  const html = await importMd(id, pageContext)
   return {
     pageContext: {
+      markdownHTML: html,
       pageProps: {
-        id,
-        html
+        id
       }
     }
   }
 }
-//TODO html在SSG之后没有被销毁
 
 import path from 'path'
 import needUpdate from '@/../assets/needUpdate.txt?raw'
