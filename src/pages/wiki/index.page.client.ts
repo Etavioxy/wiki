@@ -14,3 +14,5 @@ async function render(pageContext: PageContextClient) {
   const app = createApp(Page, pageProps, pageContext)
   app.mount('#app')
 }
+
+///https://cn.vite-plugin-ssr.com/hydration-mismatch

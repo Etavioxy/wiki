@@ -1,10 +1,10 @@
 <template>
   <div class="wiki">
-    <div style="position:fixed;top:0;display:flex">
+    <nav style="position:fixed;top:0;display:flex">
       <a href="https://vitejs.dev" target="_blank">
         <img src="/vite.svg" class="logo" alt="Vite logo" />
       </a>
-    </div>
+    </nav>
     <div class="container">
       <div id="markdown">
         <slot></slot>
@@ -14,14 +14,14 @@
     <ListMenu v-for="list in lists" :title="list.title" :items="list.items"></ListMenu>
     <div class="info" :class="nowAnchor!=0 ? 'info-fixed':'info-absolute'">
       <p>heading = {{focus}}</p>
-      <HeadingsTree ref="headingTree" :headingDOM="headingDOM"></HeadingsTree>
+      <HeadingsTree ref="headingTree" :headingDOM="headingDOM" :nowAnchor="nowAnchor"></HeadingsTree>
     </div>
   </div>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted } from 'vue';
+import { ref, reactive, watch, computed, onMounted } from 'vue';
 import HeadingsTree from '@/components/headings-tree.vue';
 import ListMenu from '@/components/list-menu.vue';
 //import Vote from '@/components/vote.vue';
@@ -80,14 +80,19 @@ onMounted(() => {
 
     headings.splice(1, headings.length-2, ...headingDOM);
   }
-  window.addEventListener('scroll', () => {
+
+  function updateAnchor() {
     while( headings[nowAnchor.value].offsetTop > window.scrollY ){
       nowAnchor.value--;
     }
     while( headings[nowAnchor.value+1].offsetTop <= window.scrollY ){
       nowAnchor.value++;
     }
-  });
+  }
+  window.addEventListener('scroll', updateAnchor);
+  updateAnchor();
+
+  // for list
   (async () => {
     let data = await fetch('http://localhost:3000/example-list.json');
     let json = await data.json();
@@ -98,6 +103,29 @@ onMounted(() => {
 
 // 如何操作元素的样式和类名，比如使用 `element.style`、`element.classList` 等属性或方法。
 // 如何实现平滑滚动和锚点跳转，比如使用 `window.scrollTo(options)`、`element.scrollIntoView(options)` 等方法。
+
+// 监听nowAnchor的变化
+//watch(
+//  nowAnchor,
+//  (newValue, oldValue) => {
+//    if (oldValue === 0 && newValue !== 0) {
+//      // 当nowAnchor从0变为其他数时执行的操作
+//      // 在这里设置infoElement的位置为scrollTop，并通过动画变为top: -50px
+//      const infoElement = document.querySelector('.info');
+//      infoElement.style.top = '0px';
+//      console.log('scroll top ' , infoElement.scrollTop);
+//      infoElement.style.top = 'undefined';
+//    } else if (oldValue !== 0 && newValue === 0) {
+//      // 当nowAnchor从其他数变为0时执行的操作
+//      // 在这里设置infoElement的位置为offsetTop，并通过动画变为top: 170px
+//      const infoElement = document.querySelector('.info');
+//      infoElement.style.top = infoElement.offsetTop + 'px';
+//      console.log('offset top ' , infoElement.offsetTop);
+//      infoElement.style.top = 'undefined';
+//    }
+//  }
+//);
+//
 
 </script>
 
