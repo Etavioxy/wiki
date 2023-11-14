@@ -1,14 +1,11 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import ssr from 'vite-plugin-ssr/plugin'
-import md from 'vite-plugin-vue-markdown'
 
-import anchor from 'markdown-it-anchor'
-import multimdTable from 'markdown-it-multimd-table'
-import prism from 'markdown-it-prism'
-import katex from '@iktakahiro/markdown-it-katex'
-import attrs from 'markdown-it-attrs'
-import taskLists from 'markdown-it-task-lists'
+import markdownItSetup from './markdownItSetup.ts'
+
+import Components from 'unplugin-vue-components/vite'
+import Markdown from 'unplugin-vue-markdown/vite'
 
 import { resolve } from 'path'
 
@@ -22,29 +19,22 @@ export default defineConfig({
       include: [/\.vue$/, /\.md$/]
     }),
     ssr({ prerender: true }),
-    md({
+    Markdown({
       markdownItOptions: {
         html: true,
         linkify: true,
         typographer: true,
       },
-      markdownItSetup(md) {
-        md.use(anchor, {
-          level: [1,2],
-          permalink: anchor.permalink.headerLink(),
-        });
-        md.use(multimdTable);
-        md.use(prism);
-        md.use(katex, {"throwOnError" : true, "errorColor" : "#ce5e9a"});
-        md.use(attrs, {
-          leftDelimiter: '{',
-          rightDelimiter: '}',
-          allowedAttributes: []
-        });
-        md.use(taskLists);
-        //md.use(myPlugin);
-      },
-    })
+      markdownItSetup,
+    }),
+    // should be placed after `Markdown()`
+    Components({
+      // allow auto load markdown components under `./src/components/`
+      extensions: ['vue', 'md'],
+
+      // allow auto import and register components used in markdown
+      customLoaderMatcher: path => path.endsWith('.md'),
+    }),
   ],
   resolve: {
     alias: {

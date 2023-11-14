@@ -80,12 +80,14 @@ function update(){
 }
 
 watch(() => props.nowAnchor, (newValue, oldValue) => {
-  console.log(oldValue, newValue);
+  //console.log(oldValue, newValue);
   if (headingsNodeList[oldValue - 1]) {
-    headingsNodeList[oldValue - 1].active = false;
+    let e = headingsNodeList[oldValue - 1];
+    while( e ) e.active = false, e = e.parent;
   }
   if (headingsNodeList[newValue - 1]) {
-    headingsNodeList[newValue - 1].active = true;
+    let e = headingsNodeList[newValue - 1];
+    while( e ) e.active = true, e = e.parent;
   }
 });
 

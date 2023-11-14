@@ -17,7 +17,8 @@
       <HeadingsTree ref="headingTree" :headingDOM="headingDOM" :nowAnchor="nowAnchor"></HeadingsTree>
     </div>
   </div>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <link href="/css/prism-material-oceanic.css" rel="stylesheet" />
 </template>
 
 <script setup lang="ts">

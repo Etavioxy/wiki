@@ -26,9 +26,4 @@ tmp
 /*.md
 !/README.md
 
-/assets
-!/assets/index.md
-!/assets/a.md
-!/assets/b.md
-
 test*

@@ -6,6 +6,7 @@ import './style.scss'
 
 // 全局注册组件
 import TreeNode from './components/headings-tree-node.vue'
+import ExamplePalette from './components/example-palette.vue'
 
 export { createApp }
 
@@ -25,6 +26,7 @@ function createApp(Page: Component, pageProps: PageProps | undefined, pageContex
   const app = createSSRApp(PageWithLayout)
 
   app.component('TreeNode', TreeNode);
+  app.component('ExamplePalette', ExamplePalette);
 
   // Make pageContext available from any Vue component
   setPageContext(app, pageContext)

@@ -12,10 +12,6 @@
 
 # Editor.md
 
-![](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png)
-
-![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg) ![](https://img.shields.io/bower/v/editor.md.svg)
-
 **目录 (Table of Contents)**
 
 [TOCM]
@@ -225,21 +221,25 @@ Image:
 | 计算机      | $1600   |   5     |
 | 手机        |   $12   |   12   |
 | 管线        |    $1    |  234  |
-                    
+
+
 First Header  | Second Header
 ------------- | -------------
 Content Cell  | Content Cell
 Content Cell  | Content Cell 
+
 
 | First Header  | Second Header |
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
 
+
 | Function name | Description                    |
 | ------------- | ------------------------------ |
 | `help()`      | Display the help window.       |
 | `destroy()`   | **Destroy your computer!**     |
+
 
 | Left-Aligned  | Center Aligned  | Right Aligned |
 | :------------ |:---------------:| -----:|
@@ -247,12 +247,13 @@ Content Cell  | Content Cell
 | col 2 is      | centered        |   $12 |
 | zebra stripes | are neat        |    $1 |
 
+
 | Item      | Value |
 | --------- | -----:|
 | Computer  | $1600 |
 | Phone     |   $12 |
 | Pipe      |    $1 |
-                
+
 ----
 
 #### 特殊符号 HTML Entities Codes
@@ -286,7 +287,7 @@ X&sup2; Y&sup3; &frac34; &frac14;  &times;  &divide;   &raquo;
                     
 $$E=mc^2$$
 
-行内的公式$$E=mc^2$$行内的公式，行内的$$E=mc^2$$公式。
+行内的公式$E=mc^2$行内的公式，行内的$E=mc^2$公式。
 
 $$\(\sqrt{3x-1}+(1+x)^2\)$$
                     
@@ -294,15 +295,15 @@ $$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$
 
 多行公式：
 
-```math
+$$
 \displaystyle
-\left( \sum\_{k=1}^n a\_k b\_k \right)^2
+\left( \sum_{k=1}^n a_k b_k \right)^2
 \leq
-\left( \sum\_{k=1}^n a\_k^2 \right)
-\left( \sum\_{k=1}^n b\_k^2 \right)
-```
+\left( \sum_{k=1}^n a_k^2 \right)
+\left( \sum_{k=1}^n b_k^2 \right)
+$$
 
-```katex
+$$
 \displaystyle 
     \frac{1}{
         \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{
@@ -312,14 +313,14 @@ $$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$
          {1+\cdots} }
         } 
     }
-```
+$$
 
-```latex
+$$
 f(x) = \int_{-\infty}^\infty
     \hat f(\xi)\,e^{2 \pi i \xi x}
     \,d\xi
-```
-                
+$$
+
 ### 绘制流程图 Flowchart
 
 ```flow

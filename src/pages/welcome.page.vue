@@ -1,14 +1,4 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
-
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
     <p>
@@ -35,8 +25,17 @@ const count = ref(0)
     <a href="/wiki/a">a.md</a>
     <br>
     <a href="/wiki/b">b.md</a>
+    <br>
+    <a href="/wiki/components">components.md</a>
   </p>
+  <ExamplePalette defaultColor="red">说明</ExamplePalette>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const count = ref(0)
+</script>
 
 <style scoped>
 .read-the-docs {

@@ -13,7 +13,7 @@
       <slot :node="node"></slot>
     </div>
     <!-- 如果节点有子节点，并且处于展开状态，递归渲染子节点 -->
-    <ul :style="{display: node.children && node.children.length > 0 && node.open ? 'block':'none'}">
+    <ul :style="{display: node.children && node.children.length > 0 && (node.open || node.active) ? 'block':'none'}">
       <TreeNode
         v-for="(child, index) in node.children"
         :key="index"
