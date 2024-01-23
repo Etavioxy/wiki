@@ -4,7 +4,7 @@ import ssr from 'vite-plugin-ssr/plugin'
 
 import markdownItSetup from './markdownItSetup.ts'
 
-import Components from 'unplugin-vue-components/vite'
+//import Components from 'unplugin-vue-components/vite'
 import Markdown from 'unplugin-vue-markdown/vite'
 
 import { resolve } from 'path'
@@ -28,13 +28,13 @@ export default defineConfig({
       markdownItSetup,
     }),
     // should be placed after `Markdown()`
-    Components({
-      // allow auto load markdown components under `./src/components/`
-      extensions: ['vue', 'md'],
+    //Components({
+    //  // allow auto load markdown components under `./src/components/`
+    //  extensions: ['vue', 'md'],
 
-      // allow auto import and register components used in markdown
-      customLoaderMatcher: path => path.endsWith('.md'),
-    }),
+    //  // allow auto import and register components used in markdown
+    //  customLoaderMatcher: path => path.endsWith('.md'),
+    //}),
   ],
   resolve: {
     alias: {

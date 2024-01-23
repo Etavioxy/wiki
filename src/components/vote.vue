@@ -54,8 +54,8 @@ const vote = async () => {
   // send request to submit vote
 //  await axios.post("/api/vote", { option: selected.value });
 //  // get vote result
-  const res = await axios.get("/api/result");
-  //const res = {data:{ a: 1145, b: 1419, c: 810}};
+  //const res = await axios.get("/api/result");
+  const res = {data:{ a: 1145, b: 1419, c: 810}};
   // update options with result
   options.value.forEach((option) => {
     option.count = res.data[option.value] || 0;
