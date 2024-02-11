@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@iktakahiro/markdown-it-katex':
+    specifier: ^4.0.1
+    version: 4.0.1
   '@vue/server-renderer':
     specifier: ^3.3.4
     version: 3.3.4(vue@3.3.4)
@@ -20,9 +23,6 @@ dependencies:
   markdown-it-attrs:
     specifier: ^4.1.6
     version: 4.1.6(markdown-it@13.0.2)
-  markdown-it-katex:
-    specifier: ^2.0.3
-    version: 2.0.3
   markdown-it-multimd-table:
     specifier: ^4.2.2
     version: 4.2.2
@@ -294,6 +294,12 @@ packages:
     os: [win32]
     requiresBuild: true
     optional: true
+
+  /@iktakahiro/markdown-it-katex@4.0.1:
+    resolution: {integrity: sha512-kGFooO7fIOgY34PSG8ZNVsUlKhhNoqhzW2kq94TNGa8COzh73PO4KsEoPOsQVG1mEAe8tg7GqG0FoVao0aMHaw==}
+    dependencies:
+      katex: 0.12.0
+    dev: false
 
   /@jridgewell/sourcemap-codec@1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
@@ -759,6 +765,10 @@ packages:
       delayed-stream: 1.0.0
     dev: false
 
+  /commander@2.20.3:
+    resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
+    dev: false
+
   /commander@8.3.0:
     resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
     engines: {node: '>= 12'}
@@ -1007,18 +1017,18 @@ packages:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==}
     dev: true
 
+  /katex@0.12.0:
+    resolution: {integrity: sha512-y+8btoc/CK70XqcHqjxiGWBOeIL8upbS0peTPXTvgrh21n1RiWWcIpSWM+4uXq+IAgNh9YYQWdc7LVDPDAEEAg==}
+    hasBin: true
+    dependencies:
+      commander: 2.20.3
+    dev: false
+
   /katex@0.16.9:
     resolution: {integrity: sha512-fsSYjWS0EEOwvy81j3vRA8TEAhQhKiqO+FQaKWp0m39qwOzHVBgAUBIXWj1pB+O2W3fIpNa6Y9KSKCVbfPhyAQ==}
     hasBin: true
     dependencies:
       commander: 8.3.0
-    dev: false
-
-  /katex@0.6.0:
-    resolution: {integrity: sha512-rS4mY3SvHYg5LtQV6RBcK0if7ur6plyEukAOV+jGGPqFImuzu8fHL6M752iBmRGoUyF0bhZbAPoezehn7xYksA==}
-    hasBin: true
-    dependencies:
-      match-at: 0.1.1
     dev: false
 
   /kind-of@6.0.3:
@@ -1092,12 +1102,6 @@ packages:
       markdown-it: 13.0.2
     dev: false
 
-  /markdown-it-katex@2.0.3:
-    resolution: {integrity: sha512-nUkkMtRWeg7OpdflamflE/Ho/pWl64Lk9wNBKOmaj33XkQdumhXAIYhI0WO03GeiycPCsxbmX536V5NEXpC3Ng==}
-    dependencies:
-      katex: 0.6.0
-    dev: false
-
   /markdown-it-multimd-table@4.2.2:
     resolution: {integrity: sha512-aIrxGBS/klf2Q10ua/YUhxEouyvS9+NZbME2b3q4YHOFUpHLdTrBqHKssDnX+KVmctcsdR0yQxhkJf8K7UGQ5g==}
     dev: false
@@ -1122,10 +1126,6 @@ packages:
       linkify-it: 4.0.1
       mdurl: 1.0.1
       uc.micro: 1.0.6
-    dev: false
-
-  /match-at@0.1.1:
-    resolution: {integrity: sha512-h4Yd392z9mST+dzc+yjuybOGFNOZjmXIPKWjxBd1Bb23r4SmDOsk2NYCU2BMUBGbSpZqwVsZYNq26QS3xfaT3Q==}
     dev: false
 
   /md5-hex@3.0.1:

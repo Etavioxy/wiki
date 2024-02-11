@@ -15,7 +15,6 @@ async function render(pageContext: PageContextServer) {
   const app = createApp(Page, pageProps, pageContext)
 
   const appHtml = await renderToString(app)
-  console.log(appHtml)
 
   // See https://vike.dev/head
   const { documentProps } = pageContext.exports
