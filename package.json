@@ -11,18 +11,19 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@iktakahiro/markdown-it-katex": "^4.0.1",
     "@vue/server-renderer": "^3.3.4",
     "axios": "^1.4.0",
+    "katex": "^0.16.9",
     "markdown-it-anchor": "^8.6.7",
     "markdown-it-attrs": "^4.1.6",
+    "markdown-it-katex": "^2.0.3",
     "markdown-it-multimd-table": "^4.2.2",
     "markdown-it-prism": "^2.3.0",
     "markdown-it-task-lists": "^2.1.1",
     "pinia": "^2.0.36",
     "sass": "^1.62.1",
     "unplugin-vue-markdown": "^0.25.1",
-    "vite-plugin-ssr": "^0.4.133",
+    "vike": "^0.4.133",
     "vue": "^3.3.4"
   },
   "devDependencies": {

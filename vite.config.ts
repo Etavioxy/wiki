@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import ssr from 'vite-plugin-ssr/plugin'
+import ssr from 'vike/plugin'
 
 import markdownItSetup from './markdownItSetup.ts'
 
@@ -14,6 +14,9 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+  //https://vitejs.dev/config/server-options.html#server-hmr
+  },
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/]

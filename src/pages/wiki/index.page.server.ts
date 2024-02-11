@@ -1,4 +1,4 @@
-import type { PageContextBuiltIn } from 'vite-plugin-ssr/types'
+import type { PageContextBuiltIn } from 'vike/types'
 import { importMd } from '@/utils/renderMarkdown'
 
 export { onBeforeRender }

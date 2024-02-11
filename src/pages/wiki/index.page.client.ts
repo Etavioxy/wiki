@@ -3,7 +3,7 @@ export { render }
 import type { PageContextClient } from '@/types'
 import { createApp } from '@/app'
 
-import type { PageContextBuiltIn } from 'vite-plugin-ssr/types'
+import type { PageContextBuiltIn } from 'vike/types'
 import { importMd } from '@/utils/renderMarkdown'
 
 async function render(pageContext: PageContextClient) {
@@ -15,4 +15,4 @@ async function render(pageContext: PageContextClient) {
   app.mount('#app')
 }
 
-///https://cn.vite-plugin-ssr.com/hydration-mismatch
+///https://cn.vike.dev/hydration-mismatch
