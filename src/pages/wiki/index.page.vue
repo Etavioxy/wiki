@@ -1,21 +1,19 @@
 <template>
   <div class="wiki">
     <nav style="position:fixed;top:0;display:flex">
-      <a href="https://vitejs.dev" target="_blank">
-        <img src="/vite.svg" class="logo" alt="Vite logo" />
+      <a href="/">
+        <img src="/vite.svg" class="logo"/>
       </a>
     </nav>
     <div class="container">
       <div id="markdown">
         <slot></slot>
       </div>
-      <div class="info"></div>
+      <div class="info">
+        <HeadingsTree ref="headingTree" :headingDOM="headingDOM" :nowAnchor="nowAnchor"></HeadingsTree>
+      </div>
     </div>
     <ListMenu v-for="list in lists" :title="list.title" :items="list.items"></ListMenu>
-    <div class="info" :class="nowAnchor!=0 ? 'info-fixed':'info-absolute'">
-      <p>heading = {{focus}}</p>
-      <HeadingsTree ref="headingTree" :headingDOM="headingDOM" :nowAnchor="nowAnchor"></HeadingsTree>
-    </div>
   </div>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
   <link href="/css/prism-material-oceanic.css" rel="stylesheet" />
@@ -101,33 +99,6 @@ onMounted(() => {
   })();
 
 })
-
-// 如何操作元素的样式和类名，比如使用 `element.style`、`element.classList` 等属性或方法。
-// 如何实现平滑滚动和锚点跳转，比如使用 `window.scrollTo(options)`、`element.scrollIntoView(options)` 等方法。
-
-// 监听nowAnchor的变化
-//watch(
-//  nowAnchor,
-//  (newValue, oldValue) => {
-//    if (oldValue === 0 && newValue !== 0) {
-//      // 当nowAnchor从0变为其他数时执行的操作
-//      // 在这里设置infoElement的位置为scrollTop，并通过动画变为top: -50px
-//      const infoElement = document.querySelector('.info');
-//      infoElement.style.top = '0px';
-//      console.log('scroll top ' , infoElement.scrollTop);
-//      infoElement.style.top = 'undefined';
-//    } else if (oldValue !== 0 && newValue === 0) {
-//      // 当nowAnchor从其他数变为0时执行的操作
-//      // 在这里设置infoElement的位置为offsetTop，并通过动画变为top: 170px
-//      const infoElement = document.querySelector('.info');
-//      infoElement.style.top = infoElement.offsetTop + 'px';
-//      console.log('offset top ' , infoElement.offsetTop);
-//      infoElement.style.top = 'undefined';
-//    }
-//  }
-//);
-//
-
 </script>
 
 <style scoped>
@@ -149,18 +120,12 @@ onMounted(() => {
   width: 20%;
   min-width: 300px;
   margin: 0;
-  padding: 50px 50px 0 0;
-  /* transition: top 0.5s ease 0.1s; */
-}
-.info-absolute {
-  position: absolute;
-  right: 78px;
-  top: 170px;
-}
-.info-fixed {
-  position: fixed;
-  right: 78px;
-  top: -50px;
+  padding: 0 50px 0 0;
+  position: sticky;
+  top: 0;
+  height: max-content;
+  max-height: 95vh;
+  overflow-y: auto;
 }
 .info > * {
   margin: 80px 0px;

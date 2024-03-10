@@ -16,6 +16,10 @@ import { resolve } from 'path'
 export default defineConfig({
   server: {
   //https://vitejs.dev/config/server-options.html#server-hmr
+    strictPort: true,
+    hmr: {
+      clientPort:3000
+    },
   },
   plugins: [
     vue({
