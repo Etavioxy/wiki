@@ -110,6 +110,15 @@ onMounted(() => {
   /*box-shadow: 0px 50px 30px 50px rgba(0, 0, 0, 0.5125);*/
   display: flex;
 }
+@media (max-width: 800px) {
+  .container {
+    border-radius: 0;
+    margin: 0;
+  }
+  .info {
+    display: none;
+  }
+}
 #markdown {
   margin: 50px;
 }
