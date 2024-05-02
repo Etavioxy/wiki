@@ -1,10 +1,9 @@
-import type { PageContextBuiltIn } from 'vike/types'
+import type { PageContextServer } from 'vike/types'
 import { importMd } from '@/utils/renderMarkdown'
 
-export { onBeforeRender }
-
-async function onBeforeRender(pageContext: PageContextBuiltIn) {
+export async function onBeforeRender(pageContext: PageContextServer) {
   const { id } = pageContext.routeParams
+  pageContext.pageProps = { id }
   const html = await importMd(id, pageContext)
   return {
     pageContext: {

@@ -1,13 +1,12 @@
 import type { Component, PageProps, PageContext } from './types'
 import { createSSRApp, defineComponent, h } from 'vue'
-import GlobalPageShell from './components/GlobalPageShell.vue'
-import { setPageContext } from './utils/usePageContext'
+import GlobalPageShell from '../components/GlobalPageShell.vue'
 import './style.scss'
 
 // 全局注册组件
-import TreeNode from './components/headings-tree-node.vue'
-import ExamplePalette from './components/example-palette.vue'
-import Vote from './components/vote.vue'
+import TreeNode from '../components/headings-tree-node.vue'
+import ExamplePalette from '../components/example-palette.vue'
+import Vote from '../components/vote.vue'
 
 export { createApp }
 
