@@ -1,4 +1,4 @@
-import type { PageContextServer } from 'vike/types'
+import type { PageContextServer } from '@/pages/types'
 import { importMd } from '@/utils/renderMarkdown'
 
 export async function onBeforeRender(pageContext: PageContextServer) {

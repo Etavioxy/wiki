@@ -1,7 +1,7 @@
 import vikeVue from "vike-vue/config";
 import type { Config } from "vike/types";
-import Head from "../layouts/HeadDefault.vue";
-import Layout from "../components/GlobalPageShell.vue";
+import Head from "@/layouts/HeadDefault.vue";
+import Layout from "@/components/GlobalPageShell.vue";
 
 // Default config (can be overridden by pages)
 export default {

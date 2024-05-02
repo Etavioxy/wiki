@@ -21,6 +21,8 @@
   </div>
 </template>
 
+// TODO https://github.com/vikejs/vike-vue/tree/main/packages/vike-vue#components
+
 <script setup lang="ts">
 import { ref, computed, toRefs } from "vue";
 import axios from "axios";

@@ -13,7 +13,7 @@ const todoItemsInitial = useData<Data>();
 </script>
 
 <script lang="ts">
-import TodoList from "../../components/TodoList.vue";
+import TodoList from "@/components/TodoList.vue";
 
 const components = { TodoList };
 export default { components };

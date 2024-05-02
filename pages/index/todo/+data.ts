@@ -1,5 +1,5 @@
 // https://vike.dev/data
-import { todoItems } from "../../database/todoItems";
+import { todoItems } from "@/database/todoItems";
 
 export type Data = ReturnType<typeof data>;
 

@@ -30,6 +30,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/compiler-sfc": "^3.4.25",
     "@vue/server-renderer": "^3.4.25",
+    "axios": "^1.6.8",
     "cross-fetch": "^4.0.0",
     "daisyui": "^4.10.3",
     "h3": "~1.11.1",
