@@ -1,13 +1,15 @@
 {
-  "name": "my-app",
-  "version": "0.0.1",
-  "description": "",
+  "name": "wiki",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "tsx ./h3-entry.ts",
     "build": "vite build",
     "preview": "NODE_ENV=production tsx ./h3-entry.ts",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue ."
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue .",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
