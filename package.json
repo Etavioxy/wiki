@@ -1,0 +1,42 @@
+{
+  "name": "my-app",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx ./h3-entry.ts",
+    "build": "vite build",
+    "preview": "NODE_ENV=production tsx ./h3-entry.ts",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue ."
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/parser": "^7.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@types/serve-static": "^1.15.7",
+    "eslint-plugin-vue": "^9.25.0"
+  },
+  "dependencies": {
+    "@hattip/polyfills": "^0.0.45",
+    "h3": "~1.11.1",
+    "serve-static": "^1.15.0",
+    "tsx": "^4.7.3",
+    "vike": "^0.4.171",
+    "vite": "^5.2.10",
+    "@auth/core": "^0.30.0",
+    "vike-authjs": "^0.1.5",
+    "telefunc": "^0.1.72",
+    "vite-plugin-vercel": "^6.0.1",
+    "@vite-plugin-vercel/vike": "^6.0.1",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/compiler-sfc": "^3.4.25",
+    "@vue/server-renderer": "^3.4.25",
+    "cross-fetch": "^4.0.0",
+    "unplugin-vue-markdown": "^0.26.2",
+    "vike-vue": "^0.6.5",
+    "vue": "^3.4.25"
+  }
+}
