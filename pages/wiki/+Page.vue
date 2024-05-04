@@ -110,7 +110,7 @@ onMounted(() => {
   /*box-shadow: 0px 50px 30px 50px rgba(0, 0, 0, 0.5125);*/
   display: flex;
 }
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .container {
     border-radius: 0;
     margin: 0;
@@ -120,6 +120,7 @@ onMounted(() => {
   }
 }
 #markdown {
+  width: 100%;
   margin: 50px;
 }
 :deep(#markdown img) {
