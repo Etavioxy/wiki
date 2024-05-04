@@ -14,7 +14,7 @@ import type {
   PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient
   //*/
 } from 'vike/types'
-import type { ComponentPublicInstance } from 'vue'
+import type { ComponentPublicInstance, VNode } from 'vue'
 
 type Component = ComponentPublicInstance // https://stackoverflow.com/questions/63985658/how-to-type-vue-instance-out-of-definecomponent-in-vue-3/63986086#63986086
 type Page = Component
@@ -27,7 +27,7 @@ export type PageContextCustom = {
   Page: Page
   pageProps?: PageProps
   urlPathname: string
-  markdownHTML?: Component
+  markdownHTML?: VNode
   exports: {
     documentProps?: {
       title?: string
